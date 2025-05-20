@@ -1,51 +1,61 @@
 import { StyleSheet } from "react-native";
-import Colors from "./Colors";
+import Colors from "@/constants/Colors";
 
 export const defaultStyles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.light.background,
+    backgroundColor: Colors.background,
+    padding: 16,
   },
   header: {
-    fontSize: 20,
-    fontWeight: "bold",
-    padding: 10,
+    fontSize: 40,
+    fontWeight: "700",
   },
   pillButton: {
-    backgroundColor: Colors.light.tint,
     padding: 10,
-    borderRadius: 5,
+    height: 60,
+    borderRadius: 40,
     justifyContent: "center",
     alignItems: "center",
   },
   textLink: {
-    color: Colors.light.tint,
-    fontWeight: "bold",
-    fontSize: 16,
-    textAlign: "center",
+    color: Colors.primary,
+    fontSize: 18,
+    fontWeight: "500",
   },
-  description: {
-    fontSize: 16,
-    textAlign: "center",
+  descriptionText: {
+    fontSize: 18,
+    marginTop: 20,
+    color: Colors.gray,
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 18,
+    fontWeight: "500",
   },
   pillButtonSmall: {
-    backgroundColor: Colors.light.tint,
-    padding: 5,
-    borderRadius: 5,
+    paddingHorizontal: 20,
+    height: 40,
+    borderRadius: 20,
     justifyContent: "center",
     alignItems: "center",
   },
   buttonTextSmall: {
-    fontSize: 12,
-    color: Colors.light.background,
-    margin: 12,
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "500",
+  },
+  sectionHeader: {
+    fontSize: 20,
+    fontWeight: "bold",
+    margin: 20,
     marginBottom: 10,
   },
   block: {
-    margin: 12,
-    marginBottom: 10,
-    padding: 12,
-    borderRadius: 12,
-    backgroundColor: Colors.light.background,
+    marginHorizontal: 20,
+    padding: 14,
+    backgroundColor: "#fff",
+    borderRadius: 16,
+    gap: 20,
   },
 });
