@@ -10,7 +10,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import * as SecureStore from "expo-secure-store";
-import { ClerkProvider } from "@clerk/clerk-expo";
+import { ClerkProvider, useAuth } from "@clerk/clerk-expo";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 const tokenCache = {
@@ -41,6 +41,8 @@ SplashScreen.preventAutoHideAsync();
 
 const InitialLayout = () => {
   const router = useRouter();
+  const { isLoaded, isSignedIn } = useAuth();
+
   const [loaded, error] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
     ...FontAwesome.font,
@@ -56,6 +58,10 @@ const InitialLayout = () => {
       SplashScreen.hideAsync();
     }
   }, [loaded]);
+
+  useEffect(() => {
+    console.log("isSignedIn", isSignedIn);
+  }, [isSignedIn]);
 
   if (!loaded) {
     return null;
@@ -102,6 +108,18 @@ const InitialLayout = () => {
         options={{
           title: "Help",
           presentation: "modal",
+        }}
+      />
+
+      <Stack.Screen
+        name="verify/[phone]"
+        options={{
+          title: "Sign Up",
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => router.back()}>
+              <Ionicons name="arrow-back" size={34} color={Colors.dark} />
+            </TouchableOpacity>
+          ),
         }}
       />
     </Stack>
