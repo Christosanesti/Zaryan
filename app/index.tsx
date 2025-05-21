@@ -1,47 +1,37 @@
-import React from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  Touchable,
-  TouchableOpacity,
-} from "react-native";
-import { ResizeMode, Video } from "expo-av";
-import { useAssets } from "expo-asset";
-import { Link } from "expo-router";
-import { defaultStyles } from "@/constants/Styles";
 import Colors from "@/constants/Colors";
+import { defaultStyles } from "@/constants/Styles";
+import { useAssets } from "expo-asset";
+import { ResizeMode, Video } from "expo-av";
+import { Link } from "expo-router";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
-const Page = () => {
-  const [asset] = useAssets([require("@/assets/video/1.mp4")]);
+export default function Page() {
+  const [assets] = useAssets([require("@/assets/video/1.mp4")]);
 
   return (
     <View style={styles.container}>
-      {asset && (
+      {assets && (
         <Video
           resizeMode={ResizeMode.COVER}
           isMuted
           isLooping
           shouldPlay
-          source={{ uri: asset[0].uri }}
+          source={{ uri: assets[0].uri }}
           style={styles.video}
         />
       )}
       <View style={{ marginTop: 80, padding: 20 }}>
-        <Text style={styles.header}>Zaryan Co.</Text>
+        <Text style={styles.header}>Ready to change the way you money?</Text>
       </View>
 
       <View style={styles.buttons}>
         <Link
-          href={"/login"}
-          style={[
-            defaultStyles.pillButton,
-            { flex: 1, backgroundColor: Colors.dark },
-          ]}
+          href={`/login`}
+          style={[defaultStyles.pillButton, { flex: 1 }]}
           asChild
         >
           <TouchableOpacity>
-            <Text style={{ color: "yellow", fontSize: 22, fontWeight: "500" }}>
+            <Text style={{ color: "white", fontSize: 22, fontWeight: "500" }}>
               Log in
             </Text>
           </TouchableOpacity>
@@ -61,7 +51,7 @@ const Page = () => {
       </View>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -87,4 +77,3 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
 });
-export default Page;

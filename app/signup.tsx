@@ -10,12 +10,30 @@ import {
   Platform,
 } from "react-native";
 import Colors from "@/constants/Colors";
-import { Link } from "expo-router";
-const Page = () => {
+import { Link, useRouter } from "expo-router";
+import { useSignUp } from "@clerk/clerk-expo";
+
+export default function SignUp() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [countryCode, setCountryCode] = useState("+971");
   const keyboardVerticalOffset = Platform.OS === "ios" ? 80 : 0;
-  const onSignUp = async () => {};
+  const router = useRouter();
+  const { signUp } = useSignUp();
+
+  const onSignUp = async () => {
+    const fullPhoneNumber = `${countryCode}${phoneNumber}`;
+    try {
+      await signUp!.create({
+        phoneNumber: fullPhoneNumber,
+      });
+      router.push({
+        pathname: "/verify/[phone]",
+        params: { phone: fullPhoneNumber },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
@@ -62,7 +80,7 @@ const Page = () => {
       </View>
     </KeyboardAvoidingView>
   );
-};
+}
 
 const styles = StyleSheet.create({
   inputContainer: {
@@ -83,4 +101,3 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.primaryMuted,
   },
 });
-export default Page;
