@@ -26,7 +26,7 @@ export default function Page() {
 
       <View style={styles.buttons}>
         <Link
-          href={`/login`}
+          href="/signin"
           style={[defaultStyles.pillButton, { flex: 1 }]}
           asChild
         >
@@ -37,7 +37,7 @@ export default function Page() {
           </TouchableOpacity>
         </Link>
         <Link
-          href={"/signup"}
+          href="/signup"
           style={[
             defaultStyles.pillButton,
             { flex: 1, backgroundColor: "#fff" },

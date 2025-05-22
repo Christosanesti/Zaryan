@@ -100,7 +100,7 @@ const Page = () => {
         )}
       />
 
-      <Link href={"/login"} replace asChild>
+      <Link href={"/signin"} replace asChild>
         <TouchableOpacity>
           <Text style={defaultStyles.buttonText}>Already have an account?</Text>
         </TouchableOpacity>

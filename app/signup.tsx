@@ -13,7 +13,7 @@ import Colors from "@/constants/Colors";
 import { Link, useRouter } from "expo-router";
 import { useSignUp } from "@clerk/clerk-expo";
 
-export default function SignUp() {
+function SignUp() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [countryCode, setCountryCode] = useState("+971");
   const keyboardVerticalOffset = Platform.OS === "ios" ? 80 : 0;
@@ -62,7 +62,7 @@ export default function SignUp() {
             onChangeText={setPhoneNumber}
           ></TextInput>
         </View>
-        <Link href={"/login"} replace asChild>
+        <Link href={"/signin"} replace asChild>
           <TouchableOpacity>
             <Text style={defaultStyles.textLink}>Already have an account?</Text>
           </TouchableOpacity>
@@ -102,3 +102,5 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.primaryMuted,
   },
 });
+
+export default SignUp;
